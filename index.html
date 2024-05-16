@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="heart">
+
+        </div>
+    </div>
+
+    <script src="anime.min.js"></script>
+    <script>
+        const container = document.querySelector('.container');
+        for(let i = 1 ; i <= 100; i++){
+            const hearts = document.createElement('div');
+            hearts.classList.add('heart');
+            container.appendChild(hearts);
+
+        }
+
+        function animateHearts(){
+            anime({
+                targets: '.heart',
+                translateX: () => anime.random(-700,700),
+                translateY: () => anime.random(-500,500),
+                scale: () => anime.random(1,5),
+                rotate: 45,
+                easing: 'easeInOutBack',
+                duration: 3000,
+                delay: anime.stagger(10),
+                complete: animateHearts
+            })
+        }
+
+        animateHearts();
+    </script>
+</body>
+</html>
